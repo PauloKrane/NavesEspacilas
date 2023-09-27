@@ -1,2 +1,2 @@
 # NavesEspacilas
-Desarrollo de videojuego de acción espacial que te sumerge en un vasto universo lleno de peligros y desafíos. construido utilizando las tecnologías web HTML, CSS y venilla JavaScript. 
+Practica de desarrollo de un juego simple en el que el jugador controla una nave espacial y dispara a enemigos que aparecen en la pantalla.  construido utilizando las tecnologías web HTML, CSS y venilla JavaScript. 
