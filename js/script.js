@@ -1,6 +1,6 @@
 const BALA_MOVER = 20;
 const ENEMIGO_HEIGHT = 80;
-const GENERAR_ENEMIGO_INTERVAL = 20;//50
+const GENERAR_ENEMIGO_INTERVAL = 10;//50
 const INTERVAL = 100;
 const TIEMPO_SOBREVIVIR = 1000;
 
@@ -43,7 +43,7 @@ function destruirEnemigo() {
   let enemigos = document.querySelectorAll('.enemigo');
   destruirBalas.forEach (bala => {
     enemigos.forEach(enemigo => {
-      if (bala.getBoundingClientRect().top <= enemigo.getBoundingClientRect().top + ENEMIGO_HEIGHT) {
+        if (bala.getBoundingClientRect().top <= enemigo.getBoundingClientRect().top + ENEMIGO_HEIGHT) {
         if (bala.getBoundingClientRect().left >= enemigo.getBoundingClientRect().left &&
           bala.getBoundingClientRect().left <= enemigo.getBoundingClientRect().left + 80) {
           explosion.play();
@@ -52,7 +52,9 @@ function destruirEnemigo() {
           setTimeout(() => {
             enemigo.remove();
             bala.remove();
-          }, 90);
+            explosion.pause();
+          },600);
+         
         }
       }
     });
@@ -82,10 +84,14 @@ function crearEnemigos() {
     if (positionEnemigo > positionNaveTop) {
       lives--;
       live.textContent = lives;
+      if (lives == 0){
+        alert("Perdiste el juego")
+        location.reload();
+      }
       enemigo.remove();
     }
+    
   });
- 
 }
 
 function sobrevivir() {//cronometro sobrevivir 60 segundos para ganar juego
@@ -94,13 +100,14 @@ function sobrevivir() {//cronometro sobrevivir 60 segundos para ganar juego
     tiempo.textContent=segundos;
     if (segundos === -1){
         alert('Ganaste el juego');
-        location.reload();
+        //location.reload();
+        initGame();
     }
   }, TIEMPO_SOBREVIVIR);
 }
 
 function setupIntervalo(intervalo){
-  setInterval(crearEnemigos,100);
+  setInterval(crearEnemigos,intervalo);
   setInterval(moveBalas,intervalo);
   setInterval(destruirEnemigo,intervalo);
 }
@@ -110,14 +117,14 @@ function initGame() {
   body = document.querySelector('body');
   laser = document.getElementById('laser');
   explosion = document.getElementById('explocion');
-  live = document.querySelector('i');
+  live = document.getElementById ('live');
   enemigos = document.querySelectorAll('.enemigo');
   lives = 5;
-  tiempo = document.getElementById('tiempo');
+  tiempo = document.getElementById('time');
   segundos = 60;
   generarEnemigo = 0;
   intervalGenerarEnemigo = 50;
-  
+    
   sobrevivir();
   setupListeners();
   setupIntervalo(INTERVAL);
