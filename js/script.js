@@ -112,6 +112,15 @@ function setupIntervalo(intervalo){
   setInterval(destruirEnemigo,intervalo);
 }
 
+function selectorNave (){
+  let radioNave = document.getElementById("selectorNave");
+  if (radioNave.checked) {
+    nave.style.backgroundImage = 'url("/imagenes/naves/nave1.png")';
+  } else {
+    nave.style.backgroundImage = 'url("/imagenes/naves/nave2.png")';
+  }   
+}
+
 function initGame() {
   nave = document.querySelector('.nave');
   body = document.querySelector('body');
@@ -124,13 +133,23 @@ function initGame() {
   segundos = 60;
   generarEnemigo = 0;
   intervalGenerarEnemigo = 50;
-    
+  
+  selectorNave();
   sobrevivir();
   setupListeners();
   setupIntervalo(INTERVAL);
 }
 
-initGame();
+function ocultarMenuJugar() {
+  let ocultarMenu = document.getElementById('menu');
+  let pantallaJugar=document.getElementById('pantallaJugar');
+  ocultarMenu.style.display = "none";
+ // pantallaJugar.style.visibility = "hidden";
+  pantallaJugar.style.display = 'block';
+  initGame();
+}
+ 
+
 
 
 
