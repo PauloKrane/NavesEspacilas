@@ -7,11 +7,21 @@
 .nave {
     width: 80px;
     height: 90px;
-    background-image: url('/imagenes/naves/nave1.png');
+    /*background-image: url('/imagenes/naves/nave1.png');*/
     background-size: cover;
     position: absolute;
     bottom: 50px;
     left: calc(50vw - 40px);
+}
+
+
+img {
+    height: 90px;
+    width: 80px;
+}
+
+.il {
+    background-color: black;
 }
 
 body {
@@ -35,17 +45,17 @@ body {
 .enemigo {
     width: 80px;
     height: 60px;
-    background-image: url(/imagenes/naves/naveEnemigo.png);
+    background-image: url('/imagenes/naves/naveEnemigo.png');
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
     top: 0;
 }
 
-#lives {
+.vida {
     position: absolute;
     top: 10px;
-    left: 10px;
+    left: 20px;
     font-size: 20px;
     color: white;
 }
@@ -62,3 +72,30 @@ i {
     color:white;
 }
 
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.container>div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 25px;
+}
+
+.centrar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    color: aliceblue;
+}
+
+#pantallaJugar {
+    display: none;
+
+}
