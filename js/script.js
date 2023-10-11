@@ -1,10 +1,10 @@
 const BALA_MOVER = 20;
 const ENEMIGO_HEIGHT = 80;
-const GENERAR_ENEMIGO_INTERVAL = 10;//50
+const GENERAR_ENEMIGO_INTERVAL = 13;//50
 const INTERVAL = 100;
 const TIEMPO_SOBREVIVIR = 1000;
 
-let nave, body, laser, explosion, live, lives, tiempo, segundos, generarEnemigo, enemigos;
+var nave, body, laser, explosion, live, lives, tiempo, segundos, generarEnemigo, enemigos;
 
 function setupListeners() { //configuramos de los eventos del mouse que captamos.
   document.addEventListener('mousemove', moveNave);//Mueve la nave espacial horizontalmente siguiendo el movimiento del mouse.
@@ -49,9 +49,10 @@ function destruirEnemigo() {
           explosion.play();
           enemigo.style.backgroundImage = 'url("/imagenes/explosion/explosion.png")';
           enemigo.style.height = ENEMIGO_HEIGHT + 'px';
+          bala.remove();
           setTimeout(() => {
             enemigo.remove();
-            bala.remove();
+           
             explosion.pause();
           },600);
          
@@ -100,8 +101,7 @@ function sobrevivir() {//cronometro sobrevivir 60 segundos para ganar juego
     tiempo.textContent=segundos;
     if (segundos === -1){
         alert('Ganaste el juego');
-        //location.reload();
-        initGame();
+        location.reload();
     }
   }, TIEMPO_SOBREVIVIR);
 }
@@ -142,9 +142,8 @@ function initGame() {
 
 function ocultarMenuJugar() {
   let ocultarMenu = document.getElementById('menu');
-  let pantallaJugar=document.getElementById('pantallaJugar');
+  let pantallaJugar = document.getElementById('pantallaJugar');
   ocultarMenu.style.display = "none";
- // pantallaJugar.style.visibility = "hidden";
   pantallaJugar.style.display = 'block';
   initGame();
 }
